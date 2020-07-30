@@ -2,6 +2,7 @@ package com.GureevInc.sqlliteandroidapplication.entities;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "books")
@@ -14,7 +15,20 @@ public class Book {
     public String author;
     public int countPages;
 
-    public Book( int genreId, String title, String author, int countPages) {
+    @Ignore
+    public Book() {
+    }
+
+    @Ignore
+    public Book(int id, int genreId, String title, String author, int countPages) {
+        this.id = id;
+        this.genreId = genreId;
+        this.title = title;
+        this.author = author;
+        this.countPages = countPages;
+    }
+
+    public Book(int genreId, String title, String author, int countPages) {
         this.genreId = genreId;
         this.title = title;
         this.author = author;

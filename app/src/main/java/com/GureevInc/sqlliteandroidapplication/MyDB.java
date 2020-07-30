@@ -16,10 +16,11 @@ import com.GureevInc.sqlliteandroidapplication.entities.Genre;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Book.class, Genre.class}, version = 1,exportSchema = false)
+@Database(entities = {Book.class, Genre.class}, version = 1, exportSchema = false)
 public abstract class MyDB extends RoomDatabase {
 
     public abstract BookDAO bookDAO();
+
     public abstract GenreDAO genreDAO();
 
     private static volatile MyDB instance;
@@ -30,11 +31,11 @@ public abstract class MyDB extends RoomDatabase {
 
     public static MyDB getInstance(Context context) {
         MyDB singleton = instance;
-        if (instance != null) {
+        if (singleton != null) {
             return singleton;
         }
         synchronized (MyDB.class) {
-            if (instance==null){
+            if (instance == null) {
                 instance = Room.databaseBuilder(context.getApplicationContext(), MyDB.class, "MyDB")
                         .addCallback(callback)
                         .build();
@@ -62,7 +63,19 @@ public abstract class MyDB extends RoomDatabase {
             databaseWriteExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
+//                    MyDB.getInstance(context)
+//                            .genreDAO()
+//                            .insertAllGenres(new Genre("роман"), new Genre("фантастика"), new Genre("рассказ"));
 
+//                    MyDB.getInstance(context)
+//                            .bookDAO()
+//                            .insertAllBooks(
+//                                    new Book(1, "abc", "aaa", 100),
+//                                    new Book(3, "cdv", "aaa", 100),
+//                                    new Book(1, "qwerty", "vvv", 200),
+//                                    new Book(2, "zxcv", "ccc", 150),
+//                                    new Book(2, "vcz", "bbb", 50)
+//                            );
                 }
             });
         }

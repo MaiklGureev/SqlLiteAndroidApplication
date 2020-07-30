@@ -1,6 +1,10 @@
 package com.GureevInc.sqlliteandroidapplication;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.database.Cursor;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,41 +23,59 @@ import java.util.List;
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
 
     private List<BookItem> bookList = new ArrayList<>();
+    private List<Genre> genreList = new ArrayList<>();
+    private AlertDialogActions alertDialogActions = new AlertDialogActions();
 
-    private Context context;
+    private Activity context;
 
-    public BookListAdapter(Context context) {
+    public BookListAdapter(Activity context) {
         this.context = context;
     }
 
-    void setBookAndGenreLists(List<BookItem> books, List<Genre> genres) {
-        bookList = books;
+    void setBooks(List<BookItem> bookList) {
+        this.bookList = bookList;
+        notifyDataSetChanged();
+    }
+
+    public void setGenreList(List<Genre> genreList) {
+        this.genreList = genreList;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = View.inflate(context, R.layout.recycler_view_item_book, parent);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.recycler_view_item_book, parent,false);
+        final BookViewHolder bookViewHolder = new BookViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),"Click on item!",Toast.LENGTH_SHORT).show();
+                alertDialogActions.showMainAlertDialogForItem(context,bookViewHolder.getBookItem(),genreList);
             }
         });
-        BookViewHolder bookViewHolder = new BookViewHolder(itemView);
         return bookViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        holder.textViewTitle.setText(bookList.get(position).title);
-        holder.textViewAuthor.setText(bookList.get(position).author);
-        holder.textViewCountPages.setText(bookList.get(position).countPages);
 
-        holder.textViewId.setText(bookList.get(position).id);
-        holder.textViewGenreId.setText(bookList.get(position).genreId);
-        holder.textViewGenre.setText(bookList.get(position).genre);
+        String title = bookList.get(position).title;
+        String author = bookList.get(position).author;
+        String genre = bookList.get(position).genre;
+        int countPages = bookList.get(position).countPages;
+        int id= bookList.get(position).id;
+
+        int genreId = bookList.get(position).genreId;
+
+        holder.textViewTitle.setText("Title: "+title);
+        holder.textViewAuthor.setText("Author: "+author);
+        holder.textViewCountPages.setText("Count pages: "+countPages);
+
+        holder.textViewId.setText(String.valueOf(id));
+        holder.textViewGenreId.setText(String.valueOf(genreId));
+        holder.textViewGenre.setText("Genre: "+genre);
+
+        holder.setBookItem(bookList.get(position));
     }
 
     @Override
@@ -62,6 +84,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
     }
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
+
+        private BookItem bookItem;
 
         private final TextView textViewId;
         private final TextView textViewGenreId;
@@ -78,6 +102,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewGenre = itemView.findViewById(R.id.textViewGenre);
             textViewCountPages = itemView.findViewById(R.id.textViewCountPages);
+        }
+
+        public BookItem getBookItem() {
+            return bookItem;
+        }
+
+        public void setBookItem(BookItem bookItem) {
+            this.bookItem = bookItem;
         }
     }
 }

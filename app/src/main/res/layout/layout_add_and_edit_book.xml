@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:rowCount="4"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill"
+        android:text="Title"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_gravity="fill"
+        android:layout_columnSpan="1"
+        android:lines="2"
+        android:layout_columnWeight="3"/>
+
+    <TextView
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill"
+        android:text="Author"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <EditText
+        android:id="@+id/editTextAuthor"
+        android:layout_gravity="fill"
+        android:layout_columnSpan="1"
+        android:lines="2"
+        android:layout_columnWeight="3"
+        />
+
+    <TextView
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill"
+        android:text="Count\npages"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_columnWeight="1"
+        />
+
+    <EditText
+        android:id="@+id/editTextCountPages"
+        android:layout_gravity="fill"
+        android:layout_columnSpan="1"
+        android:inputType="numberDecimal"
+        android:layout_columnWeight="3"
+        />
+
+
+    <TextView
+
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill"
+        android:text="Genre"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_columnWeight="1"
+        />
+    <Spinner
+        android:id="@+id/spinnerGenre"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill"
+        android:layout_columnWeight="3"
+        />
+
+</GridLayout>

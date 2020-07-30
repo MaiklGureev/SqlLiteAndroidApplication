@@ -11,6 +11,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.GureevInc.sqlliteandroidapplication.entities.Book;
+import com.GureevInc.sqlliteandroidapplication.entities.BookItem;
 
 import java.util.List;
 
@@ -19,6 +20,35 @@ public interface BookDAO {
 
     @Query("select * from books")
     LiveData<List<Book>> getAllBooksInList();
+
+    @Query("select  books.id,books.genreId,genres.name,books.title,books.author,books.countPages " +
+            "from books " +
+            "join genres on books.genreId = genres.id")
+    LiveData<List<BookItem>> getBookItems();
+
+    @Query("select  books.id,books.genreId,genres.name,books.title,books.author,books.countPages " +
+            "from books " +
+            "join genres on books.genreId = genres.id " +
+            "order by genres.name ")
+    LiveData<List<BookItem>> getBookItemsOrderByGenre();
+
+    @Query("select  books.id,books.genreId,genres.name,books.title,books.author,books.countPages " +
+            "from books " +
+            "join genres on books.genreId = genres.id " +
+            "order by title")
+    LiveData<List<BookItem>> getBookItemsOrderByTitle();
+
+    @Query("select  books.id,books.genreId,genres.name,books.title,books.author,books.countPages " +
+            "from books " +
+            "join genres on books.genreId = genres.id " +
+            "order by author")
+    LiveData<List<BookItem>> getBookItemsOrderByAuthor();
+
+    @Query("select  books.id,books.genreId,genres.name,books.title,books.author,books.countPages " +
+            "from books " +
+            "join genres on books.genreId = genres.id " +
+            "order by countPages")
+    LiveData<List<BookItem>> getBookItemsOrderByCountPages();
 
     @Query("select * from books where id = :id")
     Book getBookById(String id);
@@ -31,6 +61,9 @@ public interface BookDAO {
 
     @Delete
     void deleteBook(Book book);
+
+    @Query("delete from books where books.id = :id")
+    void deleteBookById(int id);
 
     @Query("delete from books")
     void clear();

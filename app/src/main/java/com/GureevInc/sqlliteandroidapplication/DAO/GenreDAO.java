@@ -31,6 +31,9 @@ public interface GenreDAO {
     @Delete(entity = Genre.class)
     void deleteGenres(Genre genre);
 
+    @Query("delete from genres where genres.id = :id")
+    void deleteGenresById(int id);
+
     @Query("delete from genres")
     void clear();
 
