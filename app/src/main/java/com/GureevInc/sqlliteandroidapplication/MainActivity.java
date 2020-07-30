@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         alertDialogActions = new AlertDialogActions();
 
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         bookListAdapter = new BookListAdapter(this);
         recyclerView.setAdapter(bookListAdapter);
@@ -60,8 +63,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClick(View view) {
-        switch (view.getId()) {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.buttonAddBook: {
                 alertDialogActions.showAddNewBookAlertDialog(this,myViewModel.getListLiveDataGenres().getValue());
                 break;
@@ -88,5 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+        return super.onOptionsItemSelected(item);
     }
 }

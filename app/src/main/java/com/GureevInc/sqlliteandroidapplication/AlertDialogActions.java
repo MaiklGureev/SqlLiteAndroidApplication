@@ -194,7 +194,7 @@ public class AlertDialogActions {
                 //Toast.makeText(context, "Click on item "+which, Toast.LENGTH_SHORT).show();
                 switch (which) {
                     case 0: {
-                        Toast.makeText(context, "Order by " + groups[0], Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ordered by " + groups[0], Toast.LENGTH_SHORT).show();
                         myViewModel.getListLiveDataBookItems().observe((LifecycleOwner) context, new Observer<List<BookItem>>() {
                             @Override
                             public void onChanged(List<BookItem> bookItems) {
@@ -204,7 +204,7 @@ public class AlertDialogActions {
                         break;
                     }
                     case 1: {
-                        Toast.makeText(context, "Order by " + groups[1], Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ordered by " + groups[1], Toast.LENGTH_SHORT).show();
                         myViewModel.getListLiveDataBookItemsOrderByGenre().observe((LifecycleOwner) context, new Observer<List<BookItem>>() {
                             @Override
                             public void onChanged(List<BookItem> bookItems) {
@@ -214,7 +214,7 @@ public class AlertDialogActions {
                         break;
                     }
                     case 2: {
-                        Toast.makeText(context, "Order by " + groups[2], Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ordered by " + groups[2], Toast.LENGTH_SHORT).show();
                         myViewModel.getListLiveDataBookItemsOrderByTitle().observe((LifecycleOwner) context, new Observer<List<BookItem>>() {
                             @Override
                             public void onChanged(List<BookItem> bookItems) {
@@ -224,7 +224,7 @@ public class AlertDialogActions {
                         break;
                     }
                     case 3: {
-                        Toast.makeText(context, "Order by " + groups[3], Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ordered by " + groups[3], Toast.LENGTH_SHORT).show();
                         myViewModel.getListLiveDataBookItemsOrderByAuthor().observe((LifecycleOwner) context, new Observer<List<BookItem>>() {
                             @Override
                             public void onChanged(List<BookItem> bookItems) {
@@ -234,7 +234,7 @@ public class AlertDialogActions {
                         break;
                     }
                     case 4: {
-                        Toast.makeText(context, "Order by " + groups[4], Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ordered by " + groups[4], Toast.LENGTH_SHORT).show();
                         myViewModel.getListLiveDataBookItemsOrderByCountPage().observe((LifecycleOwner) context, new Observer<List<BookItem>>() {
                             @Override
                             public void onChanged(List<BookItem> bookItems) {

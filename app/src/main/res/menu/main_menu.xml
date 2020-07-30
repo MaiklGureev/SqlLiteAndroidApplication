@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/buttonAddBook"
+        app:showAsAction="ifRoom"
+        android:title="Add book" />
+
+    <item
+        android:id="@+id/buttonAddGenre"
+        app:showAsAction="ifRoom"
+        android:title="Add genre"
+        />
+
+    <item
+        android:id="@+id/buttonOrderBy"
+        android:title="Order by"/>
+
+    <item
+        android:id="@+id/buttonDeleteGenres"
+        android:title="Delete genres"/>
+
+    <item
+        android:id="@+id/buttonClearDB"
+        android:title="Clear DB"/>
+
+</menu>
